@@ -1,0 +1,37 @@
+class Solution {
+public:
+     const int mod = 1e9+7;
+    
+    int distinctSubseqII(string s) {
+        
+        int endingAt0=0;
+        int endingAt1=0;
+        int has0=0;
+        
+        for(char ch : s){
+            
+            if(ch=='1'){
+                endingAt1 = (endingAt0+endingAt1+1)%mod;
+            }else{
+                 endingAt0 = (endingAt0+endingAt1)%mod;
+                 has0=1;
+            }
+        }
+        
+        int ans = (endingAt0 + endingAt1+has0)%mod;
+    
+        return ans;
+        
+    }
+
+    int numberOfUniqueGoodSubsequences(string binary) {
+        return distinctSubseqII(binary);
+    }
+};
+
+
+
+
+
+
+
